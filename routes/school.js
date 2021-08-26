@@ -13,7 +13,7 @@
  router.post("/", school.create);  
  
  // Retrieve a school
- router.get("/:id", school.findOne);
+ //router.get("/:id", school.findOne);
 
  // Retrieve all school
  router.get("/", school.findAll);
@@ -25,6 +25,6 @@
  router.delete("/:id", school.delete);
 
  // Delete all schools
- router.delete("/", school.deleteAll);
+// router.delete("/", school.deleteAll);
  
  module.exports=router;

@@ -1,8 +1,8 @@
 const express=require('express');
 const teacher=require('./teacher');
 const classes = require('./class');
-
-
+const school = require('./school');
+const course = require('./course');
 const router=express.Router();
 
 const defaultRoutes=[
@@ -16,12 +16,12 @@ const defaultRoutes=[
     route:classes
 },
 {
-    path:'/class',
-    route:classes
+    path:'/school',
+    route:school
 },
 {
-    path:'/class',
-    route:classes
+    path:'/course',
+    route:course
 }];
     
 
