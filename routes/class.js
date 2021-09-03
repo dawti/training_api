@@ -11,6 +11,9 @@ const router=express.Router();
 // Create a new User Account
 router.post("/", classes.create);
 
+ // Retrieve all class
+ router.get("/", classes.findAll);
+
 // Retrieve all usertype of this user account
 router.get("/:id", classes.findAll);
 

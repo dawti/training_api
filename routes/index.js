@@ -15,14 +15,15 @@ const defaultRoutes=[
     path:'/class',
     route:classes
 },
-{
-    path:'/class',
-    route:classes
-},
-{
-    path:'/class',
-    route:classes
-}];
+// {
+//     path:'/course',
+//     route:course
+// },
+// {
+//     path:'/school',
+//     route:school
+// }
+];
     
 
 
