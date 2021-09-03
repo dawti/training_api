@@ -4,11 +4,13 @@ const port=8081;
 const cors=require('cors');
 const model = require('./models');
 const routes = require ('./routes');
+const cors=require('cors');
+app.use(cors());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 app.use('/api',routes);
 
-model.db.sequelize.sync().then(() => {
+model.db.sequelize.sync(/* {force:true} */).then(() => {
     console.log('Drop and Resync with { force: true }');
   });
 //   app.use(function (req, res, next) {

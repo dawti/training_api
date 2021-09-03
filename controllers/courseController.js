@@ -33,7 +33,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const id = req.params.id;
 
-  Course.findAll( {  where: { id: id } } )
+  Course.findAll( /* {  where: { id: id } } */ )
     .then(data => {
       res.send(data);
     })
