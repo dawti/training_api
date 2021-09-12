@@ -13,7 +13,7 @@
  router.post("/", student.create);  
  
  // Retrieve a student
- //router.get("/:id", student.findOne);
+ router.get("/:id", student.findOne);
 
  // Retrieve all student
  router.get("/", student.findAll);

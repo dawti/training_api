@@ -88,7 +88,7 @@ exports.findStudentsByTeacher = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Studreg.findByPk( {  where: { id: id } } )
+  Studreg.findOne( {  where: { id: id } } )
     .then(data => {
       res.send(data);
     })
