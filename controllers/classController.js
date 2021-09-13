@@ -94,6 +94,7 @@
    })
      .then(num => {
        if (num == 1) {
+         console.log("delete",num)
          res.send({
            message: "Class was deleted successfully!"
          });

@@ -48,7 +48,9 @@
      
      Teacher.belongsTo(models.school);
      Teacher.hasOne(models.class);
-     
+     Teacher.belongsToMany(models.course, { through: 'teachercourses' });
+     Teacher.belongsTo(models.login);
+
 
    }
    return Teacher;

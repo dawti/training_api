@@ -12,7 +12,10 @@ const router=express.Router();
 router.post("/", classes.create);
 
 // Retrieve all usertype of this user account
-router.get("/:id", classes.findAll);
+router.get("/", classes.findAll);
+
+// Retrieve all usertype of this user account
+router.get("/:id", classes.findOne);
 
 // Update account details
 router.put("/:id", classes.update);

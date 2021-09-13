@@ -49,11 +49,25 @@ exports.findAll = (req, res) => {
     });
 };
 
+//Remove this fun when original pull is done
+// Retrieve a given School Info from the database.
+exports.findOne = (req, res) => {
+  const id = req.params.id;
 
+  School.findOne(  {  where: { id: id } } )
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving School."
+      });
+    });
+};
 // Update a School by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-
   School.update(req.body, {
     where: { id: id }
   })
