@@ -45,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
   });
   School.associate = (models) => {
    
+    School.belongsTo(models.login);
+    School.hasMany(models.studreg);
     School.hasMany(models.teacher);
 
   }

@@ -29,7 +29,8 @@
    });
    Class.associate = (models) => {
      Class.belongsTo(models.teacher);
-    
+     Class.belongsToMany(models.course, { through: 'ClassCourses' });
+     Class.hasMany(models.studreg);
     }
    return Class;
  };
