@@ -57,17 +57,20 @@ exports.findAll = (req, res) => {
 
 // Retrieve all given Studreg Info from the database.
 exports.findStudentsByTeacher = (req, res) => {
-  const id = req.params.id;
+  const name = req.params.name;
 
   Studreg.findAll({
+    attributes:['id','firstName','lastName'],
     include : [
       { 
         model: Class, 
+        attributes:['name'],
         required: true,
         include: [{model: Course,
+                   attributes:['name'],
                    required: true,
                    include: [{model: Teacher,
-                    where: { id: id },
+                    where: { firstName: name },
                     required: true
                      }] 
                     }]}

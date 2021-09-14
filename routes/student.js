@@ -19,7 +19,7 @@
  router.get("/", student.findAll);
 
  // Retrieve all student
- router.get("/teach/:id", student.findStudentsByTeacher);
+ router.get("/teach/:name", student.findStudentsByTeacher);
 
  // Update student details
  router.put("/:id", student.update);
