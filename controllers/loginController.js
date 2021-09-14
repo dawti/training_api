@@ -56,12 +56,10 @@
    } } )
      .then(data => {
       //  logger.info(data[0].password);
-       const pwdb=req.body.password
-      //  logger.info(pwdb);
-       if(req.body.password===pwdb){
+       if(req.body.password===data[0].password){
          res.send(true)
        }
-       else res.send(data);
+       else res.send(false);
      })
      .catch(err => {
        res.status(500).send({
