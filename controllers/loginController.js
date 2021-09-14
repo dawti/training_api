@@ -26,7 +26,7 @@
    // Create a user
      const account = {
      userName: req.body.username,
-     // email:req.body.email,
+     email:req.body.email,
      userType:req.body.usertype,
      password: req.body.password,
      loginDate:Date.now()
@@ -55,11 +55,11 @@
        userName: req.body.username
    } } )
      .then(data => {
-       logger.info(data[0].password);
+      //  logger.info(data[0].password);
        const pwdb=req.body.password
-       logger.info(pwdb);
+      //  logger.info(pwdb);
        if(req.body.password===pwdb){
-         res.send("Login successful")
+         res.send(true)
        }
        else res.send(data);
      })
