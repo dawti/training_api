@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/api',routes);
 
-model.db.sequelize.sync(/* {force:true} */).then(() => {
+model.db.sequelize.sync(/*{force:true} */).then(() => {
     console.log('Drop and Resync with { force: true }');
   });
 //   app.use(function (req, res, next) {
