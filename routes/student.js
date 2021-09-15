@@ -27,6 +27,9 @@
  // Delete student
  router.delete("/:id", student.delete);
 
+ // paged items route
+router.get('/test/items', student.findPage);
+
  // Delete all students
  //router.delete("/", student.deleteAll);
  
