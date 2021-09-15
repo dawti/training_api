@@ -42,21 +42,28 @@ exports.create = (req, res) => {
 
 // Retrieve all given Studreg Info page by page from the database.
 exports.findPage = (req, res, next) => {
-  // example array of 150 items to be paged
-  const items = [...Array(150).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) }));
+ 
 
   // get page from query params or default to first page
   const page = parseInt(req.query.page) || 1;
 
   // get pager object for specified page
   const pageSize = 5;
-  const pager = paginate(items.length, page, pageSize);
 
-  // get page of items from items array
-  const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+  Studreg
+  .findAndCountAll({
+     attributes:['id','firstName','lastName','email','gender','mobile'],
+     offset: pageSize*(page-1),
+     limit: pageSize
+  })
+  .then(result => {
+    console.log(result.count);
+    console.log(result.rows);
+    const pager = paginate(result.count, page, pageSize);
+    const pageOfItems = result.rows;
+    res.json({ pager, pageOfItems });
+  });
 
-  // return pager object and current page of items
-  return res.json({ pager, pageOfItems });
 };
 
 
