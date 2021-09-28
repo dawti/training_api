@@ -19,13 +19,16 @@
  router.get("/", student.findAll);
 
  // Retrieve all student
- router.get("/teach/:id", student.findStudentsByTeacher);
+ router.get("/teach/:name", student.findStudentsByTeacher);
 
  // Update student details
  router.put("/:id", student.update);
 
  // Delete student
  router.delete("/:id", student.delete);
+
+ // paged items route
+router.get('/list/view', student.findPage);
 
  // Delete all students
  //router.delete("/", student.deleteAll);

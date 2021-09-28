@@ -9,6 +9,7 @@ const Class =model.db.class;
 const Course =model.db.course;
 const Teacher =model.db.teacher;
 //const Op =model.db.Op;
+const paginate = require('jw-paginate');
 
 // Create and Save a new Studreg
 exports.create = (req, res) => {
@@ -39,6 +40,33 @@ exports.create = (req, res) => {
     });
 };
 
+// Retrieve all given Studreg Info page by page from the database.
+exports.findPage = (req, res, next) => {
+ 
+
+  // get page from query params or default to first page
+  const page = parseInt(req.query.page) || 1;
+
+  // get pager object for specified page
+  const pageSize = 5;
+
+  Studreg
+  .findAndCountAll({
+     attributes:['id','firstName','lastName','email','gender','mobile'],
+     offset: pageSize*(page-1),
+     limit: pageSize
+  })
+  .then(result => {
+    console.log(result.count);
+    console.log(result.rows);
+    const pager = paginate(result.count, page, pageSize);
+    const pageOfItems = result.rows;
+    res.json({ pager, pageOfItems });
+  });
+
+};
+
+
 // Retrieve all given Studreg Info from the database.
 exports.findAll = (req, res) => {
   const id = req.params.id;
@@ -57,17 +85,20 @@ exports.findAll = (req, res) => {
 
 // Retrieve all given Studreg Info from the database.
 exports.findStudentsByTeacher = (req, res) => {
-  const id = req.params.id;
+  const name = req.params.name;
 
   Studreg.findAll({
+    attributes:['id','firstName','lastName'],
     include : [
       { 
         model: Class, 
+        attributes:['name'],
         required: true,
         include: [{model: Course,
+                   attributes:['name'],
                    required: true,
                    include: [{model: Teacher,
-                    where: { id: id },
+                    where: { firstName: name },
                     required: true
                      }] 
                     }]}
